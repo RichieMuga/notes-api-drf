@@ -2,9 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('notes/', views.NoteList.as_view(), name='notes_list'),
-    path('notes/create/', views.NoteCreate.as_view(), name='notes_create'),
-    path('notes/<slug:slug>/', views.NoteRetrieve.as_view(), name='notes_retrieve'),
-    path('notes/<slug:slug>/update/', views.NoteUpdate.as_view(), name='notes_update'),
-    
+    path('notes/', views.NoteListCreate.as_view(), name='notes_list'),
+    path('notes/<int:pk>/', views.NoteRetriveUpdate.as_view(), name='notes_detail'),
+    path('notes/<int:pk>/', views.NoteRetrieveDestroy(), name='notes_delete'),
 ]
