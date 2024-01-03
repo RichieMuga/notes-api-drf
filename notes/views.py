@@ -2,25 +2,14 @@ from rest_framework import generics
 from .models import Note
 from .serializers import NoteSerializer
 
-class NoteList(generics.ListCreateAPIView):
+class NoteListCreate(generics.ListCreateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
-class NoteCreate(generics.CreateAPIView):
+class NoteRetriveUpdate(generics.RetrieveUpdateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
-class NoteRetrieve(generics.RetrieveAPIView):
+class NoteRetrieveDestroy(generics.RetrieveDestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    lookup_field = 'slug'
-
-class NoteUpdate(generics.UpdateAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
-    lookup_field = 'slug'
-
-class NoteDestroy(generics.DestroyAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
-    lookup_field = 'slug'
