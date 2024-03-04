@@ -3,24 +3,21 @@ from .models import Note
 from .serializers import NoteSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.authentication import TokenAuthentication
 
 
 class NoteListCreate(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-
 
 class NoteRetriveUpdate(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
 
 
 class NoteRetrieveDestroy(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
