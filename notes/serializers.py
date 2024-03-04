@@ -9,6 +9,6 @@ class NoteSerializer(serializers.ModelSerializer):
             'content',
             'created_at',
             'last_modified',
-            'slug'
+            'user'
         )
         model = Note
