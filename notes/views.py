@@ -1,36 +1,24 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from .models import Note
 from .serializers import NoteSerializer
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.authentication import TokenAuthentication
+from .mixins import UserFilterMixin
 
-
-class NoteListCreate(generics.ListCreateAPIView):
+class NoteListCreate(UserFilterMixin,generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
-    # This method is responsible for returning the queryset that the view will use to fetch objects from the database.
-    def get_queryset(self):
-        user = self.request.user
-        return Note.objects.filter(user=user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-class NoteRetriveUpdate(generics.RetrieveUpdateAPIView):
+class NoteRetriveUpdate(UserFilterMixin,generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Note.objects.filter()
     serializer_class = NoteSerializer
 
-    def get_queryset(self):
-        user = self.request.user
-        return Note.objects.filter(user=user)
 
-
-class NoteRetrieveDestroy(generics.RetrieveDestroyAPIView):
+class NoteRetrieveDestroy(UserFilterMixin,generics.RetrieveDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-
-    def get_queryset(self):
-        user = self.request.user
-        return Note.objects.filter(user=user)
