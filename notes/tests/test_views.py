@@ -2,16 +2,6 @@ from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 from notes.models import Note
-
-# factory = APIRequestFactory()
-# factory = APIRequestFactory()
-# request = factory.get('/notes/')
-# create test to check if get note returns a response it may be 404 or 200
-# create test to check if get note returns a 404 status code
-# create test to check if get note returns a 200 status code
-# create test to check if
-
-
 class TestNoteAPIView(APITestCase):
     """Test notes api views"""
 
