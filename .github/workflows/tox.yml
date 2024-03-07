@@ -1,6 +1,11 @@
 name: GH-Workflow
 
-on: [push]
+on:
+  push:
+    branches: [ "develop", "prod", "tests" ]
+  pull_request:
+    branches: [ "develop", "prod" ]
+
 
 jobs:
   build:
