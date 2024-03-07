@@ -2,6 +2,8 @@ from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 from notes.models import Note
+
+
 class TestNoteAPIView(APITestCase):
     """Test notes api views"""
 
@@ -42,4 +44,3 @@ class TestNoteAPIView(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, 204)
         self.assertEqual(Note.objects.count(), 0)
-    
