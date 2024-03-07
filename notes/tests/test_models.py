@@ -40,9 +40,8 @@ class NoteTestCase(TestCase):
         note = Note.objects.get(id=1)
         expected_object_last_modified = f"{note.last_modified}"
         self.assertEqual(expected_object_last_modified, f"{note.last_modified}")
-    
+
     def test_note_int(self):
-        note = Note.objects.get(id=1)
         expected_object_str = 1
         self.assertNotEqual(expected_object_str, "only a test")
 
