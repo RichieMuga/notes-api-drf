@@ -14,6 +14,14 @@ import os
 
 from pathlib import Path
 from dotenv import load_dotenv
+from config.social_auth import (
+    SOCIAL_AUTH_RAISE_EXCEPTIONS,
+    SOCIAL_AUTH_FACEBOOK_KEY,
+    SOCIAL_AUTH_FACEBOOK_SECRET,
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE,
+)
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,10 +33,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "os.environ.ge"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -165,5 +173,13 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {"fields": "id, name, email"}
 # TODO: IN PRODUCTION REMOVE AND USE ALLOWED ORIGINS
 CORS_ALLOW_ALL_ORIGINS: bool = True
 
+# Load social auth configuration
 
-from config.social_auth import *
+
+# Social Auth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
+SOCIAL_AUTH_FACEBOOK_KEY
+SOCIAL_AUTH_FACEBOOK_SECRET
+SOCIAL_AUTH_RAISE_EXCEPTIONS
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE
