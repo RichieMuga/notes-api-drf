@@ -30,7 +30,7 @@ The default database is **sqlite3** on local environment. If you want to use pos
 ## Install dependencies
 
 ```bash
-pip install -r requirements/requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Run migrations
@@ -50,7 +50,7 @@ python manage.py runserver
 ### Install dependencies
 
 ```bash
-pip install -r requirements/production.txt
+pip install -r requirements.txt
 ```
 
 ### Other Requirements
@@ -64,14 +64,14 @@ pip install -r requirements/production.txt
 Make sure you set the environment variables in the .env for the database as shown in the .env.example file so that the DATBASE_URL, AWS S3 variables & SENTRY variables are set.
 
 ```bash
-python manage.py runserver --settings=config.settings.prod
+python manage.py runserver
 ```
 
 ## Docker setup
 
 ### Note
 
-The default port for postgresql is **5432** but in the Docker setup, the port is **5435**. So, make sure you change the port number in the .env file when using Docker.
+The database being used in this project is sqlite3
 
 ### Build image and run container
 
