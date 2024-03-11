@@ -53,12 +53,6 @@ python manage.py runserver
 pip install -r requirements.txt
 ```
 
-### Other Requirements
-
-- AWS S3 bucket <https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html>
-- AWS IAM user with access to the S3 bucket <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html>
-- Sentry account <https://sentry.io/>
-
 ### Note
 
 Make sure you set the environment variables in the .env for the database as shown in the .env.example file so that the DATBASE_URL, AWS S3 variables & SENTRY variables are set.
