@@ -1,16 +1,14 @@
 FROM python:3.10
 
 # Set the working directory in the container
-ENV APP_HOME /app
-WORKDIR $APP_HOME
+WORKDIR /app
 
-
-# Copy the current directory contents into the container at /app
-COPY requirements .
+# Copy the requirements file
+COPY requirements.txt .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r production.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container at /app
 COPY . .
@@ -24,3 +22,6 @@ ENV PYTHONUNBUFFERED TRUE
 
 # Disable generating bytecode.
 ENV PYTHONDONTWRITEBYTECODE TRUE
+
+# Increase pip timeout due to 2 minutes
+ENV PIP_DEFAULT_TIMEOUT=120
