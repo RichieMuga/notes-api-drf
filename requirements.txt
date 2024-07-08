@@ -1,4 +1,4 @@
-asgiref==3.7.2
+asgiref==3.8.1
 cachetools==5.3.3
 certifi==2023.11.17
 cffi==1.16.0
@@ -16,10 +16,13 @@ django-rest-framework-social-oauth2==1.2.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 drf-social-oauth2==2.1.3
+drf-yasg==1.21.7
 ecdsa==0.18.0
 filelock==3.13.1
 flake8==7.0.0
+gunicorn==22.0.0
 idna==3.6
+inflection==0.5.1
 iniconfig==2.0.0
 jwcrypto==1.5.4
 mccabe==0.7.0
@@ -40,6 +43,7 @@ python-dotenv==1.0.0
 python-jose==3.3.0
 python3-openid==3.2.0
 pytz==2023.3.post1
+PyYAML==6.0.1
 requests==2.31.0
 requests-oauthlib==1.3.1
 rsa==4.9
@@ -49,5 +53,6 @@ social-auth-core==4.5.1
 sqlparse==0.4.4
 tox==4.14.1
 typing_extensions==4.9.0
+uritemplate==4.1.1
 urllib3==2.1.0
 virtualenv==20.25.1
