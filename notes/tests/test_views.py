@@ -14,7 +14,7 @@ class TestNoteAPIView(APITestCase):
 
     def test_create_note(self):
         url = reverse("notes_list")
-        data = {"title": "test title", "content": "test content"}
+        data = {"title": "test title", "description": "test description"}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Note.objects.count(), 1)
@@ -25,21 +25,21 @@ class TestNoteAPIView(APITestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_get_note_detail(self):
-        note = Note.objects.create(user=self.user, title="test title", content="test content")
+        note = Note.objects.create(user=self.user, title="test title", description="test description")
         url = reverse("notes_detail", args=[note.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_update_note_detail(self):
-        note = Note.objects.create(user=self.user, title="test title", content="test content")
+        note = Note.objects.create(user=self.user, title="test title", description="test description")
         url = reverse("notes_detail", args=[note.id])
-        data = {"title": "test title", "content": "test content"}
+        data = {"title": "test title", "description": "test description"}
         response = self.client.put(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Note.objects.get(id=note.id).title, "test title")
 
     def test_delete_note_detail(self):
-        note = Note.objects.create(user=self.user, title="test title", content="test content")
+        note = Note.objects.create(user=self.user, title="test title", description="test description")
         url = reverse("notes_delete", args=[note.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, 204)

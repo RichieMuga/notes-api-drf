@@ -11,14 +11,14 @@ class NoteTestCase(TestCase):
         self.user = User.objects.create_user(username="testuser", password="testpass")
         # Create a Note instance associated with the user
         Note.objects.create(
-            title="only a test", content="yes, this is only a test", slug="only-a-test", user=self.user
+            title="only a test", description="yes, this is only a test", slug="only-a-test", user=self.user
         )
 
     def test_note_content(self):
         note = Note.objects.get(id=1)
         expected_object_name = f"{note.title}"
         self.assertEqual(expected_object_name, "only a test")
-        expected_object_content = f"{note.content}"
+        expected_object_content = f"{note.description}"
         self.assertEqual(expected_object_content, "yes, this is only a test")
 
     def test_note_slug(self):
@@ -52,7 +52,7 @@ class NoteTestCase(TestCase):
 
     def test_note_content_str(self):
         note = Note.objects.get(id=1)
-        expected_object_str = f"{note.content}"
+        expected_object_str = f"{note.description}"
         self.assertEqual(expected_object_str, "yes, this is only a test")
 
     def test_note_slug_str(self):

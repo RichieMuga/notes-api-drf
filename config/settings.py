@@ -172,7 +172,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {"fields": "id, name, email"}
 # TODO: IN PRODUCTION REMOVE AND USE ALLOWED ORIGINS
 CORS_ALLOW_ALL_ORIGINS: bool = True
 
-ALLOWED_HOSTS = ["*", "0.0.0.0", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 # Load social auth configuration
 # Social Auth
