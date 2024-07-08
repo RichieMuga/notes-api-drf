@@ -1,27 +1,33 @@
-FROM python:3.10
+FROM python:3.12.0-slim-bookworm
 
-# Set the working directory in the container
-WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Copy the requirements file
-COPY requirements.txt .
+ARG APP_HOME=/app
+WORKDIR ${APP_HOME}
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+COPY . ${APP_HOME}
 
-# Copy the current directory contents into the container at /app
-COPY . .
+# Create the virtualenv:
+RUN python3 -m venv /opt/venv
 
-# Make port 8000 available to the world outside this container
+# Activate virtual environment
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    pkg-config \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies with increased timeout and retry logic:
+RUN /opt/venv/bin/pip install --upgrade pip --timeout 100 && \
+    /opt/venv/bin/pip install -r requirements.txt --timeout 100 --retries 5
+
+RUN chmod +x config/scripts/entrypoint.sh
+
 EXPOSE 8000
 
-# Setting this ensures print statements and log messages
-# promptly appear in Cloud Logging.
-ENV PYTHONUNBUFFERED TRUE
-
-# Disable generating bytecode.
-ENV PYTHONDONTWRITEBYTECODE TRUE
-
-# Increase pip timeout due to 2 minutes
-ENV PIP_DEFAULT_TIMEOUT=120
+# Run the application:
+ENTRYPOINT [ "/app/config/scripts/entrypoint.sh" ]
