@@ -84,3 +84,8 @@ docker images
 ```bash
 docker ps
 ```
+
+### Or you can pull the public image from dockerhub
+```basb
+docker pull irerimugambi/notes-api
+```
